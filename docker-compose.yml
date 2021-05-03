@@ -1,0 +1,40 @@
+version: "3.8"
+services:
+  input-api:
+    container_name: "input-api"
+    build:
+      context: .
+      dockerfile: ./server/input/Dockerfile
+    restart: always
+    tty: true
+    ports:
+      - 9090:9090
+    networks:
+      - websocket-network
+    volumes:
+      - ./server/input:/usr/src/api
+  output-api:
+    container_name: "output-api"
+    build:
+      context: .
+      dockerfile: ./server/output/Dockerfile
+    restart: always
+    tty: true
+    ports:
+      - 9099:9099
+    networks:
+      - websocket-network
+    volumes:
+      - ./server/output:/usr/src/api
+  web:
+    container_name: "web"
+    build: ./client/node
+    restart: always
+    tty: true
+    ports:
+      - 8080:8080
+    volumes:
+      - ./client/node:/usr/src/app
+networks:
+  websocket-network:
+    name: websocket-network

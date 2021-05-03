@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[pipenv]
+allow_prereleases = true
+
+[packages]
+fastapi = "*"
+uvicorn = {extras = ["standard"], version = "*"}
+requests = "*"
+
+[dev-packages]
+bottle-websocket = "*"
+gevent = "*"
+gevent-websocket = "*"
+flake8 = "*"
+black = "*"
+mypy = "*"
+
+[requires]
+python_version = "3.9"
