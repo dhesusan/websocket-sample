@@ -19,7 +19,7 @@
         const userId = getUniqueStr()
         const inputWs = new WebSocket(`ws://localhost:9090/ws/${userId}`);
         const outputWs = new WebSocket(`ws://localhost:9099/ws/${userId}`)
-        outputWs.onmessage = function (event) {
+        outputWs.onmessage = (event) => {
             const messages = document.getElementById('messages')
             const message = document.createElement('li')
             const content = document.createTextNode(event.data)
@@ -27,7 +27,7 @@
             messages.appendChild(message)
         };
         const sendMessage = (event) => {
-            var input = document.getElementById("messageText")
+            const input = document.getElementById("messageText")
             inputWs.send(input.value)
             input.value = ''
             event.preventDefault()
